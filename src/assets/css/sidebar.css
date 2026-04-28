@@ -1,0 +1,56 @@
+@layer utilities {
+  [data-slot="toggle-sidebar"]::before,
+  [data-slot="toggle-sidebar"]::after {
+    left: 0px;
+    content: "";
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    background-repeat: no-repeat;
+  }
+
+  [data-slot="toggle-sidebar"]::after {
+    top: -8px;
+    background-image: radial-gradient(
+      circle at top right,
+      transparent 8px,
+      #ffffff 8px
+    );
+  }
+
+  [data-slot="toggle-sidebar"]::before {
+    bottom: -8px;
+    background-image: radial-gradient(
+      circle at bottom right,
+      transparent 8px,
+      #ffffff 8px
+    );
+  }
+
+  [data-slot="sidebar-group"] {
+    isolation: isolate; /* penting agar overlay tidak bocor */
+  }
+
+  /* Smooth scrolling (optional) */
+  [data-slot="sidebar-group-scroll"] {
+    scroll-behavior: smooth;
+  }
+
+  /* Optional: custom scrollbar */
+  [data-slot="sidebar-group-scroll"]::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  [data-slot="sidebar-group-scroll"]::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  [data-slot="sidebar-group-scroll"]::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 999px;
+  }
+
+  [data-slot="sidebar-group-scroll"]:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+}

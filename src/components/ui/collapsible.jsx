@@ -29,7 +29,7 @@ function CollapsibleContent({ children, className, ...props }) {
   return (
     <CollapsiblePrimitive.Panel
       data-slot="collapsible-content"
-      className={cn("space-y-2", className)}
+      className={cn("my-4 space-y-4", className)}
       {...props}
     >
       {children}

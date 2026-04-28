@@ -1,18 +1,20 @@
-import { AppSidebar } from "@src/components/app-sidebar";
-import Navbar from "@src/components/navbar";
-import { SidebarProvider } from "@src/components/ui/sidebar";
+import Navbar from "@components/navbar";
 import { Outlet } from "react-router-dom";
+import { AppSidebar } from "@components/app-sidebar";
+import { SidebarLayout, SidebarProvider } from "@components/ui/sidebar";
 
 function MainLayout() {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <SidebarLayout>
+        <AppSidebar />
 
-      <main className="w-full space-y-5 overflow-y-auto py-4 pr-4 pl-2">
-        <Navbar />
+        <main className="w-full space-y-5 overflow-y-auto py-4 pr-4 pl-2">
+          <Navbar />
 
-        <Outlet />
-      </main>
+          <Outlet />
+        </main>
+      </SidebarLayout>
     </SidebarProvider>
   );
 }

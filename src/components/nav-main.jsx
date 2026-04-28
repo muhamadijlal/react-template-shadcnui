@@ -1,42 +1,98 @@
+import { useMemo, useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@src/components/ui/collapsible";
+} from "@components/ui/collapsible";
 import {
   SidebarGroup,
-  SidebarMenu,
-  SidebarMenuButton,
+  SidebarMenuLink,
   SidebarMenuCollapsible,
   SidebarMenuItem,
   SidebarMenuSublink,
-} from "@src/components/ui/sidebar";
-import { MdInsertChart } from "react-icons/md";
-import { PiGearSixFill } from "react-icons/pi";
+} from "@components/ui/sidebar";
+import { isPathActive, joinPath, normalizePath } from "@src/helpers/routes";
+import { useLocation } from "react-router-dom";
 
-export function NavMain({ routes }) {
+function renderIcon(Icon) {
+  if (!Icon) return null;
+  return <Icon className="text-inherit" />;
+}
+
+export function NavMain({ menus = [] }) {
+  const location = useLocation();
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const routes = useMemo(() => {
+    return menus.filter((menu) => menu?.handle?.visible);
+  }, [menus]);
+
   return (
     <SidebarGroup>
-      <SidebarMenu>
-        <SidebarMenuButton tooltip={"test"} render={<a href="#" />}>
-          <MdInsertChart />
+      {routes.map((menu, index) => {
+        const Icon = menu?.handle?.Icon;
+        const SidebarName = menu?.handle?.sidebarName;
 
-          <span>Dashboard</span>
-        </SidebarMenuButton>
+        const visibleChildren =
+          menu?.children?.filter((child) => child?.handle?.visible) || [];
 
-        <Collapsible open={true} render={<SidebarMenuItem />}>
-          <CollapsibleTrigger>
-            <SidebarMenuCollapsible Icon={PiGearSixFill} active={true}>
-              manajemen
-            </SidebarMenuCollapsible>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <SidebarMenuSublink to="#" active={true}>
-              Akun Media
-            </SidebarMenuSublink>
-          </CollapsibleContent>
-        </Collapsible>
-      </SidebarMenu>
+        const routeHasChildren = visibleChildren.length > 0;
+        const routePath = normalizePath(menu.path);
+
+        const isActive = routeHasChildren
+          ? visibleChildren.some((child) =>
+              isPathActive(joinPath(routePath, child.path), location.pathname),
+            )
+          : isPathActive(routePath, location.pathname);
+
+        if (routeHasChildren) {
+          return (
+            <Collapsible
+              key={menu.path}
+              open={openIndex === index}
+              render={<SidebarMenuItem />}
+              onOpenChange={(open) => setOpenIndex(open ? index : null)}
+            >
+              <CollapsibleTrigger asChild>
+                <SidebarMenuCollapsible
+                  Icon={Icon}
+                  active={isActive}
+                  open={openIndex === index}
+                >
+                  {SidebarName}
+                </SidebarMenuCollapsible>
+              </CollapsibleTrigger>
+
+              <CollapsibleContent>
+                {visibleChildren.map((child) => {
+                  const childPath = joinPath(routePath, child.path);
+                  const isChildActive = isPathActive(
+                    childPath,
+                    location.pathname,
+                  );
+
+                  return (
+                    <SidebarMenuSublink
+                      key={child.path}
+                      to={childPath}
+                      active={isChildActive}
+                    >
+                      {child?.handle?.sidebarName}
+                    </SidebarMenuSublink>
+                  );
+                })}
+              </CollapsibleContent>
+            </Collapsible>
+          );
+        }
+
+        return (
+          <SidebarMenuLink key={menu.path} isActive={isActive} to={routePath}>
+            {renderIcon(Icon)}
+            <span>{SidebarName}</span>
+          </SidebarMenuLink>
+        );
+      })}
     </SidebarGroup>
   );
 }

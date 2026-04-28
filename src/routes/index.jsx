@@ -46,8 +46,8 @@ const routes = createBrowserRouter([
             path: "verification",
             element: <VerificationPage />,
             handle: {
-              title: "Varifikasi",
-              sidebarName: "Varifikasi",
+              title: "Verifikasi",
+              sidebarName: "Verifikasi",
               Icon: FaRegEdit,
               visible: true,
               description: "",
@@ -97,7 +97,7 @@ const routes = createBrowserRouter([
                   title: "Akun Media",
                   sidebarName: "Akun Media",
                   description: "",
-                  visible: false,
+                  visible: true,
                   breadcrumb: [
                     {
                       name: "Management",
