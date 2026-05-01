@@ -13,7 +13,7 @@ export function SidebarMenuSublink({
       data-slot="sidebar-menu-sublink"
       data-active={active}
       className={cn(
-        "group/menu-sublink my-3 flex cursor-pointer items-center gap-3.5",
+        "group/menu-sublink flex cursor-pointer items-center gap-3.5",
         className,
       )}
     >

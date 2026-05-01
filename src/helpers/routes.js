@@ -3,9 +3,15 @@ export const normalizePath = (path = "") => {
   return path.startsWith("/") ? path : `/${path}`;
 };
 
-export const isPathActive = (targetPath, currentPath) => {
+export const isPathActive = (targetPath, currentPath, options = {}) => {
+  const { exact = false } = options;
+
   const normalizedTarget = normalizePath(targetPath).replace(/\/$/, "");
   const normalizedCurrent = normalizePath(currentPath).replace(/\/$/, "");
+
+  if (exact) {
+    return normalizedCurrent === normalizedTarget;
+  }
 
   return (
     normalizedCurrent === normalizedTarget ||

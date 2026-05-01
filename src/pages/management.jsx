@@ -1,5 +1,5 @@
 function ManagementPage() {
-  return <>Management Page</>;
+  return;
 }
 
 export default ManagementPage;

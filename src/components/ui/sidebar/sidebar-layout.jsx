@@ -3,6 +3,7 @@ import { sidebarLayoutVariants } from "./sidebar.variants";
 import { SidebarBackdrop } from "./sidebar-backdrop";
 import { SidebarToggle } from "./sidebar-toggle";
 import { useSidebar } from "@hooks/use-sidebar";
+import { DialogProvider } from "@components/ui/dialog/dialog-provider";
 
 export function SidebarLayout({ children }) {
   const { open } = useSidebar();
@@ -15,7 +16,7 @@ export function SidebarLayout({ children }) {
     >
       <SidebarBackdrop />
       <SidebarToggle />
-      {children}
+      <DialogProvider>{children}</DialogProvider>
     </div>
   );
 }

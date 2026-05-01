@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -27,6 +27,22 @@ export function NavMain({ menus = [] }) {
     return menus.filter((menu) => menu?.handle?.visible);
   }, [menus]);
 
+  useEffect(() => {
+    const activeParentIndex = routes.findIndex((menu) => {
+      const routePath = normalizePath(menu.path);
+      const visibleChildren =
+        menu?.children?.filter((child) => child?.handle?.visible) || [];
+
+      return visibleChildren.some((child) =>
+        isPathActive(joinPath(routePath, child.path), location.pathname, {
+          exact: true,
+        }),
+      );
+    });
+
+    setOpenIndex(activeParentIndex !== -1 ? activeParentIndex : null);
+  }, [location.pathname, routes]);
+
   return (
     <SidebarGroup>
       {routes.map((menu, index) => {
@@ -51,9 +67,11 @@ export function NavMain({ menus = [] }) {
               key={menu.path}
               open={openIndex === index}
               render={<SidebarMenuItem />}
-              onOpenChange={(open) => setOpenIndex(open ? index : null)}
+              onOpenChange={(open) => {
+                setOpenIndex(open ? index : null);
+              }}
             >
-              <CollapsibleTrigger asChild>
+              <CollapsibleTrigger aschild={"true"}>
                 <SidebarMenuCollapsible
                   Icon={Icon}
                   active={isActive}
@@ -69,6 +87,9 @@ export function NavMain({ menus = [] }) {
                   const isChildActive = isPathActive(
                     childPath,
                     location.pathname,
+                    {
+                      exact: true,
+                    },
                   );
 
                   return (

@@ -1,5 +1,5 @@
 function AccountPage() {
-  return <>Account Page</>;
+  return;
 }
 
 export default AccountPage;

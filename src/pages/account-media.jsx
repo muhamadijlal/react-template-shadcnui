@@ -1,5 +1,5 @@
 function AccountMediaPage() {
-  return <>Account Media Page</>;
+  return;
 }
 
 export default AccountMediaPage;

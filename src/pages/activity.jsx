@@ -1,5 +1,5 @@
 function ActivityPage() {
-  return <>Activity Page</>;
+  return;
 }
 
 export default ActivityPage;

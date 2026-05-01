@@ -1,5 +1,5 @@
 function VerificationPage() {
-  return <>Verification Page</>;
+  return;
 }
 
 export default VerificationPage;
