@@ -21,8 +21,8 @@ npm -v
 ## 🚀 Instalasi & Menjalankan Project
 
 ```bash
-git clone <repo-url>
-cd <project-folder>
+git clone https://github.com/muhamadijlal/react-template-shadcnui.git
+cd react-template-shadcnui
 npm install
 npm run dev
 ```
