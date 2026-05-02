@@ -1,5 +1,5 @@
 import { cn } from "@src/lib/utils";
-import { Input } from "@components/ui/input";
+import { Input } from "@components/ui/input/input";
 
 export function SidebarInput({ className, ...props }) {
   return (
