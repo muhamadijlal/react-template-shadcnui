@@ -24,6 +24,8 @@ Template ini menggunakan stack modern untuk membangun aplikasi React yang cepat 
 
 - [Setup & Instalasi](./docs/setup.md)
 - [Routing](./docs/routing.md)
+- [Autocomplete](./docs/autocomplete.md)
+- [Datepicker](./docs/datepicker.md)
 - [Sidebar](./docs/sidebar.md)
 - [Components (shadcn/ui)](./docs/components.md)
 - [Icons](./docs/icons.md)
