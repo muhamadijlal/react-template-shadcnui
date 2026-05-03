@@ -9,7 +9,7 @@ function MainLayout() {
       <SidebarLayout>
         <AppSidebar />
 
-        <main className="w-full space-y-5 overflow-y-auto py-4 pr-4 pl-2">
+        <main className="h-full w-full space-y-5 overflow-y-auto py-4 pr-4 pl-2">
           <Navbar />
 
           <Outlet />
