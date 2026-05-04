@@ -30,6 +30,7 @@ Template ini menggunakan stack modern untuk membangun aplikasi React yang cepat 
 - [Components (shadcn/ui)](./docs/components.md)
 - [Icons](./docs/icons.md)
 - [Dialog](./docs/dialog.md)
+- [Tooltip](./docs/tooltip.md)
 - [InputField](./docs/input-field.md)
 - [Navbar](./docs/navbar.md)
 - [Path Alias (Vite)](./docs/path.md)
