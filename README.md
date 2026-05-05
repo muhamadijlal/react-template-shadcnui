@@ -33,6 +33,7 @@ Template ini menggunakan stack modern untuk membangun aplikasi React yang cepat 
 - [Tooltip](./docs/tooltip.md)
 - [InputField](./docs/input-field.md)
 - [Navbar](./docs/navbar.md)
+- [SonnerAlert](./docs/sonner.md)
 - [Path Alias (Vite)](./docs/path.md)
 
 ---
