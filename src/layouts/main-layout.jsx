@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { AppSidebar } from "@components/app-sidebar";
 import { SidebarLayout, SidebarProvider } from "@components/ui/sidebar";
 import { TooltipProvider } from "@components/ui/tooltip";
+import { Toaster } from "sonner";
 
 function MainLayout() {
   return (
@@ -16,6 +17,7 @@ function MainLayout() {
 
             <Outlet />
           </main>
+          <Toaster />
         </SidebarLayout>
       </TooltipProvider>
     </SidebarProvider>
